@@ -37,11 +37,6 @@ function App() {
         };
     }, []);
 
-    useEffect(() => {
-        const s = Math.floor(start) - ROW_COUNT / 2 < 0 ? 0 : Math.floor(start) - ROW_COUNT / 2;
-        setPaddingTop(s * ROW_HEIGHT);
-    }, [start]);
-
     const more = () => {
         const newItems = [];
         for (let i = 0; i < ADD_COUNT; i++) {
