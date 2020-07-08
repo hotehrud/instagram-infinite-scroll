@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+보여지는 리스트에 대해 row 의 갯수는 제한된다. ex) 20개
+
+
 ## Available Scripts
 
 In the project directory, you can run:
