@@ -7,6 +7,7 @@ const ROW_HEIGHT = 350;
 let itemId = 6;
 function App() {
     const [start, setStart] = useState(0);
+    const [paddingTop, setPaddingTop] = useState(0);
     const [items, setItems] = useState([1, 2, 3, 4, 5]);
 
     const slicedItems = useMemo(() => {
@@ -18,9 +19,10 @@ function App() {
     useEffect(() => {
         const onScroll = () => {
             const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-            console.log(clientHeight, scrollTop, scrollHeight);
+            const currentStart = scrollTop / ROW_HEIGHT;
+            updatePaddingTop(currentStart);
 
-            setStart(Math.floor(scrollTop / ROW_HEIGHT));
+            setStart(Math.floor(currentStart));
             if (clientHeight + scrollTop >= scrollHeight) {
                 // Load More...
                 more();
@@ -34,6 +36,11 @@ function App() {
         };
     }, []);
 
+    useEffect(() => {
+        const s = Math.floor(start) - ROW_COUNT / 2 < 0 ? 0 : Math.floor(start) - ROW_COUNT / 2;
+        setPaddingTop(s * ROW_HEIGHT);
+    }, [start]);
+
     const more = () => {
         const newItems = [];
         for (let i = 0; i < ADD_COUNT; i++) {
@@ -45,8 +52,16 @@ function App() {
         });
     };
 
+    const updatePaddingTop = currentStart => {
+        const start =
+            Math.floor(currentStart) - ROW_COUNT / 2 < 0
+                ? 0
+                : Math.floor(currentStart) - ROW_COUNT / 2;
+        setPaddingTop(start * ROW_HEIGHT);
+    };
+
     return (
-        <div className="App">
+        <div className="App" style={{ paddingTop: paddingTop + 'px' }}>
             {slicedItems.map(item => (
                 <div key={`item-${item}`} className="item">
                     <h1>{item}</h1>
