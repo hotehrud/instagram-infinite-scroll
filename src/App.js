@@ -19,10 +19,11 @@ function App() {
     useEffect(() => {
         const onScroll = () => {
             const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-            const currentStart = scrollTop / ROW_HEIGHT;
-            updatePaddingTop(currentStart);
+            const currentStart = Math.floor(scrollTop / ROW_HEIGHT);
 
-            setStart(Math.floor(currentStart));
+            updatePaddingTop(currentStart);
+            setStart(currentStart);
+
             if (clientHeight + scrollTop >= scrollHeight) {
                 // Load More...
                 more();
