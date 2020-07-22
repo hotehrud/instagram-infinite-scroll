@@ -7,6 +7,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - 보여지는 리스트에 대해 row 의 갯수는 제한된다. ex) 20개   
 - 스크롤의 높이는 유지된다. ex) 보여지는 row 는 비록 20개일지라도, 실제 요청된 row 는 200개라면, 200개에 따른 스크롤 높이 유지.
 
+### 관련 블로그 글
+[블로그 글](https://mygumi.tistory.com/376)
+
 ### 예제 순서
 ```sh
 $ git checkout 01-scroll
